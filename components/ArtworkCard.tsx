@@ -32,18 +32,28 @@ export function ArtworkCard({ artwork, onClick }: ArtworkCardProps) {
         )}
       </div>
       
-      <div className="space-y-2">
+      {/* Mobile Layout: Single Column */}
+      <div className="space-y-1 lg:hidden">
+        <h3 className="text-neutral-900 font-semibold text-sm">{artwork.name}</h3>
+        <p className="text-neutral-600 text-sm">{artwork.artist || 'Künstler unbekannt'}</p>
+        <p className="text-neutral-500 text-xs">
+          {artwork.width} × {artwork.height} cm
+        </p>
+      </div>
+
+      {/* Desktop Layout: Original with Tags */}
+      <div className="hidden lg:block space-y-2">
         <div className="flex justify-between items-start gap-4">
           <div className="flex-1 min-w-0">
-            <h3 className="text-neutral-900 font-semibold">{artwork.name}</h3>
-            <p className="text-neutral-600">{artwork.artist || 'Künstler unbekannt'}</p>
+            <h3 className="text-neutral-900 font-semibold text-sm">{artwork.name}</h3>
+            <p className="text-neutral-600 text-sm">{artwork.artist || 'Künstler unbekannt'}</p>
           </div>
-          <div className="text-right text-neutral-500 text-sm whitespace-nowrap">
+          <div className="text-right text-neutral-500 text-xs whitespace-nowrap">
             {artwork.width} × {artwork.height} cm
           </div>
         </div>
         {(artwork.dated || artwork.epoche) && (
-          <p className="text-neutral-500 text-sm">
+          <p className="text-neutral-500 text-xs">
             {[artwork.dated, artwork.epoche].filter(Boolean).join(' · ')}
           </p>
         )}

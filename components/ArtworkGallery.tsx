@@ -20,15 +20,33 @@ export function ArtworkGallery({ artworks }: ArtworkGalleryProps) {
         </div>
         
         {artworks.length > 0 ? (
-          <Masonry columnsCount={3} gutter="32px">
-            {artworks.map((artwork) => (
-              <ArtworkCard
-                key={artwork.id}
-                artwork={artwork}
-                onClick={() => setSelectedArtwork(artwork)}
-              />
-            ))}
-          </Masonry>
+          <>
+            {/* Mobile/Tablet Layout: 2 columns, 16px gap */}
+            <div className="lg:hidden">
+              <Masonry columnsCount={2} gutter="16px">
+                {artworks.map((artwork) => (
+                  <ArtworkCard
+                    key={artwork.id}
+                    artwork={artwork}
+                    onClick={() => setSelectedArtwork(artwork)}
+                  />
+                ))}
+              </Masonry>
+            </div>
+            
+            {/* Desktop Layout: 3 columns, 32px gap */}
+            <div className="hidden lg:block">
+              <Masonry columnsCount={3} gutter="32px">
+                {artworks.map((artwork) => (
+                  <ArtworkCard
+                    key={artwork.id}
+                    artwork={artwork}
+                    onClick={() => setSelectedArtwork(artwork)}
+                  />
+                ))}
+              </Masonry>
+            </div>
+          </>
         ) : (
           <div className="text-center py-20 text-neutral-500">
             <p>Keine Werke entsprechen Ihren Filterkriterien.</p>
