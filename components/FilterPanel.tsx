@@ -74,7 +74,7 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
             className="flex items-center gap-2 text-neutral-900 hover:text-neutral-600 transition-colors"
           >
             <SlidersHorizontal className="size-5" />
-            <span>Filters</span>
+            <span>Filter</span>
             {activeFiltersCount > 0 && (
               <Badge variant="secondary">{activeFiltersCount}</Badge>
             )}
@@ -87,7 +87,7 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
               size="sm"
               onClick={clearFilters}
             >
-              Clear all
+              Alle löschen
             </Button>
           )}
         </div>
@@ -96,7 +96,7 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4 animate-in slide-in-from-top duration-200">
             {/* Artist Filter */}
             <div>
-              <label className="text-neutral-700 mb-2 block">Artist</label>
+              <label className="text-neutral-700 mb-2 block">Künstler</label>
               <div className="flex flex-wrap gap-2">
                 {artists.map(artist => (
                   <Badge
@@ -130,35 +130,35 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
 
             {/* Signature Filter */}
             <div>
-              <label className="text-neutral-700 mb-2 block">Signature</label>
+              <label className="text-neutral-700 mb-2 block">Signatur</label>
               <div className="flex gap-2">
                 <Badge
                   variant={filters.signed === 'all' ? 'default' : 'outline'}
                   className="cursor-pointer"
                   onClick={() => setFilters({ ...filters, signed: 'all' })}
                 >
-                  All
+                  Alle
                 </Badge>
                 <Badge
                   variant={filters.signed === 'yes' ? 'default' : 'outline'}
                   className="cursor-pointer"
                   onClick={() => setFilters({ ...filters, signed: 'yes' })}
                 >
-                  Signed
+                  Signiert
                 </Badge>
                 <Badge
                   variant={filters.signed === 'no' ? 'default' : 'outline'}
                   className="cursor-pointer"
                   onClick={() => setFilters({ ...filters, signed: 'no' })}
                 >
-                  Unsigned
+                  Unsigniert
                 </Badge>
               </div>
             </div>
 
             {/* Width Filter */}
             <div>
-              <label className="text-neutral-700 mb-2 block">Width (cm)</label>
+              <label className="text-neutral-700 mb-2 block">Breite (cm)</label>
               <div className="flex gap-2 items-center">
                 <input
                   type="number"
@@ -186,7 +186,7 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
 
             {/* Height Filter */}
             <div>
-              <label className="text-neutral-700 mb-2 block">Height (cm)</label>
+              <label className="text-neutral-700 mb-2 block">Höhe (cm)</label>
               <div className="flex gap-2 items-center">
                 <input
                   type="number"
@@ -260,7 +260,7 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
             ))}
             {filters.signed !== 'all' && (
               <Badge variant="secondary" className="gap-1">
-                {filters.signed === 'yes' ? 'Signed' : 'Unsigned'}
+                {filters.signed === 'yes' ? 'Signiert' : 'Unsigniert'}
                 <button onClick={() => setFilters({ ...filters, signed: 'all' })}>
                   <X className="size-3" />
                 </button>
