@@ -172,11 +172,11 @@ export default function App() {
         setLoading(false);
       }, 800);
 
-      /* 
+       
       // Actual Airtable API implementation:
-      const AIRTABLE_API_KEY = 'YOUR_API_KEY_HERE';
-      const BASE_ID = 'YOUR_BASE_ID_HERE';
-      const TABLE_NAME = 'YOUR_TABLE_NAME_HERE';
+      const AIRTABLE_API_KEY = 'pat7CiuH5fxxk87j1.dd2d39a56e7187e55f5bee5ae6c8ae457ec3be0d3542cd85c51b66272a0957fe';
+      const BASE_ID = 'appO7VAnMnjEaVHhY';
+      const TABLE_NAME = 'Werke';
       
       const response = await fetch(
         `https://api.airtable.com/v0/${BASE_ID}/${TABLE_NAME}`,
@@ -205,7 +205,7 @@ export default function App() {
       
       setArtworks(formattedArtworks);
       setLoading(false);
-      */
+      
     } catch (error) {
       console.error('Error fetching artworks:', error);
       setLoading(false);
