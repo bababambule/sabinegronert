@@ -33,14 +33,20 @@ export function ArtworkCard({ artwork, onClick }: ArtworkCardProps) {
       </div>
       
       <div className="space-y-2">
-        <h3 className="text-neutral-900">{artwork.name}</h3>
-        <p className="text-neutral-600">{artwork.artist}</p>
-        <p className="text-neutral-500 text-sm">
-          {artwork.dated} · {artwork.epoche}
-        </p>
-        <p className="text-neutral-500 text-sm">
-          {artwork.width} × {artwork.height} cm
-        </p>
+        <div className="flex justify-between items-start gap-4">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-neutral-900 font-semibold">{artwork.name}</h3>
+            <p className="text-neutral-600">{artwork.artist || 'Künstler unbekannt'}</p>
+          </div>
+          <div className="text-right text-neutral-500 text-sm whitespace-nowrap">
+            {artwork.width} × {artwork.height} cm
+          </div>
+        </div>
+        {(artwork.dated || artwork.epoche) && (
+          <p className="text-neutral-500 text-sm">
+            {[artwork.dated, artwork.epoche].filter(Boolean).join(' · ')}
+          </p>
+        )}
         <div className="flex flex-wrap gap-1 pt-1">
           {artwork.tags.slice(0, 3).map(tag => (
             <Badge key={tag} variant="secondary" className="text-xs">

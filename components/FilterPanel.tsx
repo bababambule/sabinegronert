@@ -2,6 +2,13 @@ import { useState } from 'react';
 import { ChevronDown, X, SlidersHorizontal } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './ui/select';
 import type { FilterOptions } from '../App';
 
 interface FilterPanelProps {
@@ -15,30 +22,51 @@ interface FilterPanelProps {
 export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: FilterPanelProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const toggleArtist = (artist: string) => {
+  const addArtist = (artist: string) => {
+    if (artist && !filters.artists.includes(artist)) {
+      setFilters({
+        ...filters,
+        artists: [...filters.artists, artist]
+      });
+    }
+  };
+
+  const addEpoche = (epoche: string) => {
+    if (epoche && !filters.epoches.includes(epoche)) {
+      setFilters({
+        ...filters,
+        epoches: [...filters.epoches, epoche]
+      });
+    }
+  };
+
+  const addTag = (tag: string) => {
+    if (tag && !filters.tags.includes(tag)) {
+      setFilters({
+        ...filters,
+        tags: [...filters.tags, tag]
+      });
+    }
+  };
+
+  const removeArtist = (artist: string) => {
     setFilters({
       ...filters,
-      artists: filters.artists.includes(artist)
-        ? filters.artists.filter(a => a !== artist)
-        : [...filters.artists, artist]
+      artists: filters.artists.filter(a => a !== artist)
     });
   };
 
-  const toggleEpoche = (epoche: string) => {
+  const removeEpoche = (epoche: string) => {
     setFilters({
       ...filters,
-      epoches: filters.epoches.includes(epoche)
-        ? filters.epoches.filter(e => e !== epoche)
-        : [...filters.epoches, epoche]
+      epoches: filters.epoches.filter(e => e !== epoche)
     });
   };
 
-  const toggleTag = (tag: string) => {
+  const removeTag = (tag: string) => {
     setFilters({
       ...filters,
-      tags: filters.tags.includes(tag)
-        ? filters.tags.filter(t => t !== tag)
-        : [...filters.tags, tag]
+      tags: filters.tags.filter(t => t !== tag)
     });
   };
 
@@ -66,9 +94,9 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
     (filters.signed !== 'all' ? 1 : 0);
 
   return (
-    <div className="border-b border-neutral-200 bg-neutral-50">
-      <div className="max-w-7xl mx-auto px-6 py-6">
-        <div className="flex items-center justify-between mb-4">
+    <div className="md:fixed md:bottom-0 md:left-0 md:right-0 md:z-50 border-b md:border-t border-neutral-200 bg-neutral-50 md:bg-white md:shadow-lg">
+      <div className="max-w-7xl mx-auto px-6 py-3">
+        <div className="flex items-center justify-between">
           <button
             onClick={() => setIsExpanded(!isExpanded)}
             className="flex items-center gap-2 text-neutral-900 hover:text-neutral-600 transition-colors"
@@ -93,72 +121,112 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
         </div>
 
         {isExpanded && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4 animate-in slide-in-from-top duration-200">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-4 pb-2 max-h-[60vh] overflow-y-auto">
             {/* Artist Filter */}
             <div>
-              <label className="text-neutral-700 mb-2 block">Künstler</label>
-              <div className="flex flex-wrap gap-2">
-                {artists.map(artist => (
-                  <Badge
-                    key={artist}
-                    variant={filters.artists.includes(artist) ? 'default' : 'outline'}
-                    className="cursor-pointer"
-                    onClick={() => toggleArtist(artist)}
-                  >
-                    {artist}
-                  </Badge>
-                ))}
-              </div>
+              <label className="text-neutral-700 mb-1.5 block text-sm">Künstler</label>
+              <Select onValueChange={addArtist}>
+                <SelectTrigger className="w-full h-9">
+                  <SelectValue placeholder="Künstler auswählen" />
+                </SelectTrigger>
+                <SelectContent>
+                  {artists.filter(a => !filters.artists.includes(a)).map(artist => (
+                    <SelectItem key={artist} value={artist}>
+                      {artist}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {filters.artists.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mt-1.5">
+                  {filters.artists.map(artist => (
+                    <Badge key={artist} variant="secondary" className="gap-1 text-xs h-6">
+                      {artist}
+                      <button onClick={() => removeArtist(artist)}>
+                        <X className="size-3" />
+                      </button>
+                    </Badge>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Epoche Filter */}
             <div>
-              <label className="text-neutral-700 mb-2 block">Epoche</label>
-              <div className="flex flex-wrap gap-2">
-                {epoches.map(epoche => (
-                  <Badge
-                    key={epoche}
-                    variant={filters.epoches.includes(epoche) ? 'default' : 'outline'}
-                    className="cursor-pointer"
-                    onClick={() => toggleEpoche(epoche)}
-                  >
-                    {epoche}
-                  </Badge>
-                ))}
-              </div>
+              <label className="text-neutral-700 mb-1.5 block text-sm">Epoche</label>
+              <Select onValueChange={addEpoche}>
+                <SelectTrigger className="w-full h-9">
+                  <SelectValue placeholder="Epoche auswählen" />
+                </SelectTrigger>
+                <SelectContent>
+                  {epoches.filter(e => !filters.epoches.includes(e)).map(epoche => (
+                    <SelectItem key={epoche} value={epoche}>
+                      {epoche}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {filters.epoches.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mt-1.5">
+                  {filters.epoches.map(epoche => (
+                    <Badge key={epoche} variant="secondary" className="gap-1 text-xs h-6">
+                      {epoche}
+                      <button onClick={() => removeEpoche(epoche)}>
+                        <X className="size-3" />
+                      </button>
+                    </Badge>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Tags Filter */}
+            <div>
+              <label className="text-neutral-700 mb-1.5 block text-sm">Tags</label>
+              <Select onValueChange={addTag}>
+                <SelectTrigger className="w-full h-9">
+                  <SelectValue placeholder="Tag auswählen" />
+                </SelectTrigger>
+                <SelectContent>
+                  {allTags.filter(t => !filters.tags.includes(t)).map(tag => (
+                    <SelectItem key={tag} value={tag}>
+                      {tag}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {filters.tags.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mt-1.5">
+                  {filters.tags.map(tag => (
+                    <Badge key={tag} variant="secondary" className="gap-1 text-xs h-6">
+                      {tag}
+                      <button onClick={() => removeTag(tag)}>
+                        <X className="size-3" />
+                      </button>
+                    </Badge>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Signature Filter */}
             <div>
-              <label className="text-neutral-700 mb-2 block">Signatur</label>
-              <div className="flex gap-2">
-                <Badge
-                  variant={filters.signed === 'all' ? 'default' : 'outline'}
-                  className="cursor-pointer"
-                  onClick={() => setFilters({ ...filters, signed: 'all' })}
-                >
-                  Alle
-                </Badge>
-                <Badge
-                  variant={filters.signed === 'yes' ? 'default' : 'outline'}
-                  className="cursor-pointer"
-                  onClick={() => setFilters({ ...filters, signed: 'yes' })}
-                >
-                  Signiert
-                </Badge>
-                <Badge
-                  variant={filters.signed === 'no' ? 'default' : 'outline'}
-                  className="cursor-pointer"
-                  onClick={() => setFilters({ ...filters, signed: 'no' })}
-                >
-                  Unsigniert
-                </Badge>
-              </div>
+              <label className="text-neutral-700 mb-1.5 block text-sm">Signatur</label>
+              <Select value={filters.signed} onValueChange={(value: 'all' | 'yes' | 'no') => setFilters({ ...filters, signed: value })}>
+                <SelectTrigger className="w-full h-9">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Alle</SelectItem>
+                  <SelectItem value="yes">Signiert</SelectItem>
+                  <SelectItem value="no">Unsigniert</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
 
             {/* Width Filter */}
             <div>
-              <label className="text-neutral-700 mb-2 block">Breite (cm)</label>
+              <label className="text-neutral-700 mb-1.5 block text-sm">Breite (cm)</label>
               <div className="flex gap-2 items-center">
                 <input
                   type="number"
@@ -168,7 +236,7 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
                     ...filters, 
                     minWidth: e.target.value ? parseInt(e.target.value) : null 
                   })}
-                  className="w-24 px-3 py-2 border border-neutral-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                  className="w-full h-9 px-3 py-1.5 border border-neutral-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
                 />
                 <span className="text-neutral-400">-</span>
                 <input
@@ -179,14 +247,14 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
                     ...filters, 
                     maxWidth: e.target.value ? parseInt(e.target.value) : null 
                   })}
-                  className="w-24 px-3 py-2 border border-neutral-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                  className="w-full h-9 px-3 py-1.5 border border-neutral-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
                 />
               </div>
             </div>
 
             {/* Height Filter */}
             <div>
-              <label className="text-neutral-700 mb-2 block">Höhe (cm)</label>
+              <label className="text-neutral-700 mb-1.5 block text-sm">Höhe (cm)</label>
               <div className="flex gap-2 items-center">
                 <input
                   type="number"
@@ -196,7 +264,7 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
                     ...filters, 
                     minHeight: e.target.value ? parseInt(e.target.value) : null 
                   })}
-                  className="w-24 px-3 py-2 border border-neutral-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                  className="w-full h-9 px-3 py-1.5 border border-neutral-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
                 />
                 <span className="text-neutral-400">-</span>
                 <input
@@ -207,37 +275,20 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
                     ...filters, 
                     maxHeight: e.target.value ? parseInt(e.target.value) : null 
                   })}
-                  className="w-24 px-3 py-2 border border-neutral-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
+                  className="w-full h-9 px-3 py-1.5 border border-neutral-300 rounded text-sm focus:outline-none focus:ring-2 focus:ring-neutral-900"
                 />
-              </div>
-            </div>
-
-            {/* Tags Filter */}
-            <div className="md:col-span-2 lg:col-span-3">
-              <label className="text-neutral-700 mb-2 block">Tags</label>
-              <div className="flex flex-wrap gap-2">
-                {allTags.map(tag => (
-                  <Badge
-                    key={tag}
-                    variant={filters.tags.includes(tag) ? 'default' : 'outline'}
-                    className="cursor-pointer"
-                    onClick={() => toggleTag(tag)}
-                  >
-                    {tag}
-                  </Badge>
-                ))}
               </div>
             </div>
           </div>
         )}
 
-        {/* Active Filters Display */}
+        {/* Active Filters Display when collapsed */}
         {activeFiltersCount > 0 && !isExpanded && (
-          <div className="flex flex-wrap gap-2 mt-4">
+          <div className="flex flex-wrap gap-2 mt-3">
             {filters.artists.map(artist => (
               <Badge key={artist} variant="secondary" className="gap-1">
                 {artist}
-                <button onClick={() => toggleArtist(artist)}>
+                <button onClick={() => removeArtist(artist)}>
                   <X className="size-3" />
                 </button>
               </Badge>
@@ -245,7 +296,7 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
             {filters.epoches.map(epoche => (
               <Badge key={epoche} variant="secondary" className="gap-1">
                 {epoche}
-                <button onClick={() => toggleEpoche(epoche)}>
+                <button onClick={() => removeEpoche(epoche)}>
                   <X className="size-3" />
                 </button>
               </Badge>
@@ -253,7 +304,7 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
             {filters.tags.map(tag => (
               <Badge key={tag} variant="secondary" className="gap-1">
                 {tag}
-                <button onClick={() => toggleTag(tag)}>
+                <button onClick={() => removeTag(tag)}>
                   <X className="size-3" />
                 </button>
               </Badge>

@@ -20,7 +20,7 @@ export function ArtworkGallery({ artworks }: ArtworkGalleryProps) {
         </div>
         
         {artworks.length > 0 ? (
-          <Masonry columnsCount={3} gutter="24px">
+          <Masonry columnsCount={3} gutter="32px">
             {artworks.map((artwork) => (
               <ArtworkCard
                 key={artwork.id}

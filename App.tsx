@@ -278,14 +278,15 @@ export default function App() {
   };
 
   // Get unique values for filters
-  const uniqueArtists = Array.from(new Set(artworks.map(a => a.artist))).sort();
-  const uniqueEpoches = Array.from(new Set(artworks.map(a => a.epoche))).sort();
+  const uniqueArtists = Array.from(new Set(artworks.map(a => a.artist || 'Künstler unbekannt'))).sort();
+  const uniqueEpoches = Array.from(new Set(artworks.map(a => a.epoche).filter(e => e))).sort();
   const allTags = Array.from(new Set(artworks.flatMap(a => a.tags))).sort();
 
   // Apply filters
   const filteredArtworks = artworks.filter(artwork => {
     // Artist filter
-    if (filters.artists.length > 0 && !filters.artists.includes(artwork.artist)) {
+    const artistName = artwork.artist || 'Künstler unbekannt';
+    if (filters.artists.length > 0 && !filters.artists.includes(artistName)) {
       return false;
     }
 
@@ -346,10 +347,12 @@ export default function App() {
           <Loader2 className="size-8 animate-spin text-neutral-400" />
         </div>
       ) : (
-        <ArtworkGallery artworks={filteredArtworks} />
+        <div className="md:pb-32">
+          <ArtworkGallery artworks={filteredArtworks} />
+        </div>
       )}
       
-      <footer className="border-t border-neutral-200 py-8 mt-20">
+      <footer className="border-t border-neutral-200 py-8 mt-20 md:mb-32">
         <div className="max-w-7xl mx-auto px-6 text-center text-neutral-500">
           <p>© {new Date().getFullYear()} Sabine Gronert. Alle Rechte vorbehalten.</p>
         </div>
