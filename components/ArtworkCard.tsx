@@ -27,7 +27,7 @@ export function ArtworkCard({ artwork, onClick }: ArtworkCardProps) {
         />
         {artwork.signature && (
           <div className="absolute top-2 right-2 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-xs text-neutral-700">
-            Signed
+            Signiert
           </div>
         )}
       </div>

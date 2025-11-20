@@ -5,13 +5,13 @@ export function Hero() {
         <div className="max-w-3xl">
           <h1 className="mb-4">Sabine Gronert</h1>
           <p className="text-neutral-600 text-lg md:text-xl mb-6">
-            Art Enthusiast & Collector
+            Kunstliebhaberin & Sammlerin
           </p>
           <p className="text-neutral-500 max-w-2xl">
-            Welcome to my personal collection. Each piece has been carefully curated 
-            and represents a unique moment in contemporary art history. I invite you 
-            to explore the diverse range of works that have captured my imagination 
-            over the years.
+            Willkommen in meiner persönlichen Sammlung. Jedes Werk wurde sorgfältig 
+            ausgewählt und repräsentiert einen einzigartigen Moment in der zeitgenössischen 
+            Kunstgeschichte. Ich lade Sie ein, die vielfältige Palette von Werken zu erkunden, 
+            die meine Fantasie über die Jahre hinweg gefangen genommen haben.
           </p>
         </div>
       </div>

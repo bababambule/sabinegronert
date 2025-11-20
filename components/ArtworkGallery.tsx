@@ -15,8 +15,8 @@ export function ArtworkGallery({ artworks }: ArtworkGalleryProps) {
     <>
       <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="flex items-center justify-between mb-8">
-          <h2 className="text-neutral-800">Collection</h2>
-          <p className="text-neutral-500">{artworks.length} {artworks.length === 1 ? 'artwork' : 'artworks'}</p>
+          <h2 className="text-neutral-800">Sammlung</h2>
+          <p className="text-neutral-500">{artworks.length} {artworks.length === 1 ? 'Werk' : 'Werke'}</p>
         </div>
         
         {artworks.length > 0 ? (
@@ -31,7 +31,7 @@ export function ArtworkGallery({ artworks }: ArtworkGalleryProps) {
           </Masonry>
         ) : (
           <div className="text-center py-20 text-neutral-500">
-            <p>No artworks match your filters.</p>
+            <p>Keine Werke entsprechen Ihren Filterkriterien.</p>
           </div>
         )}
       </section>
