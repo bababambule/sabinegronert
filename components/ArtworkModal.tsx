@@ -69,13 +69,13 @@ export function ArtworkModal({ artwork, onClose }: ArtworkModalProps) {
             
             <div className="space-y-5 flex-1">
               <div>
-                <p className="text-neutral-500 text-sm mb-1">Artist</p>
+                <p className="text-neutral-500 text-sm mb-1">Künstler</p>
                 <p className="text-neutral-900">{artwork.artist}</p>
               </div>
               
               <div className="grid grid-cols-2 gap-5">
                 <div>
-                  <p className="text-neutral-500 text-sm mb-1">Dated</p>
+                  <p className="text-neutral-500 text-sm mb-1">Datiert</p>
                   <p className="text-neutral-900">{artwork.dated}</p>
                 </div>
                 
@@ -86,7 +86,7 @@ export function ArtworkModal({ artwork, onClose }: ArtworkModalProps) {
               </div>
               
               <div>
-                <p className="text-neutral-500 text-sm mb-1">Dimensions</p>
+                <p className="text-neutral-500 text-sm mb-1">Abmessungen</p>
                 <p className="text-neutral-900">{artwork.width} × {artwork.height} cm</p>
               </div>
               
@@ -97,21 +97,21 @@ export function ArtworkModal({ artwork, onClose }: ArtworkModalProps) {
                 </div>
                 
                 <div>
-                  <p className="text-neutral-500 text-sm mb-1">Technique</p>
+                  <p className="text-neutral-500 text-sm mb-1">Technik</p>
                   <p className="text-neutral-900">{artwork.technique}</p>
                 </div>
               </div>
               
               <div>
-                <p className="text-neutral-500 text-sm mb-1">Signature</p>
+                <p className="text-neutral-500 text-sm mb-1">Signatur</p>
                 <div className="flex items-center gap-2">
                   {artwork.signature ? (
                     <>
                       <Check className="size-4 text-green-600" />
-                      <span className="text-neutral-900">Signed</span>
+                      <span className="text-neutral-900">Signiert</span>
                     </>
                   ) : (
-                    <span className="text-neutral-500">Unsigned</span>
+                    <span className="text-neutral-500">Unsigniert</span>
                   )}
                 </div>
               </div>
