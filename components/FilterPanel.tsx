@@ -2,13 +2,6 @@ import { useState } from 'react';
 import { ChevronDown, X, SlidersHorizontal } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from './ui/select';
 import type { FilterOptions } from '../App';
 
 interface FilterPanelProps {
@@ -125,18 +118,18 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
             {/* Artist Filter */}
             <div>
               <label className="text-neutral-700 mb-1.5 block text-sm">Künstler</label>
-              <Select onValueChange={addArtist}>
-                <SelectTrigger className="w-full h-9">
-                  <SelectValue placeholder="Künstler auswählen" />
-                </SelectTrigger>
-                <SelectContent>
-                  {artists.filter(a => !filters.artists.includes(a)).map(artist => (
-                    <SelectItem key={artist} value={artist}>
-                      {artist}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <select
+                value=""
+                onChange={(e) => addArtist(e.target.value)}
+                className="w-full h-9 px-3 py-1.5 border border-neutral-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900"
+              >
+                <option value="">Künstler auswählen</option>
+                {artists.filter(a => !filters.artists.includes(a)).map(artist => (
+                  <option key={artist} value={artist}>
+                    {artist}
+                  </option>
+                ))}
+              </select>
               {filters.artists.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 mt-1.5">
                   {filters.artists.map(artist => (
@@ -154,18 +147,18 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
             {/* Epoche Filter */}
             <div>
               <label className="text-neutral-700 mb-1.5 block text-sm">Epoche</label>
-              <Select onValueChange={addEpoche}>
-                <SelectTrigger className="w-full h-9">
-                  <SelectValue placeholder="Epoche auswählen" />
-                </SelectTrigger>
-                <SelectContent>
-                  {epoches.filter(e => !filters.epoches.includes(e)).map(epoche => (
-                    <SelectItem key={epoche} value={epoche}>
-                      {epoche}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <select
+                value=""
+                onChange={(e) => addEpoche(e.target.value)}
+                className="w-full h-9 px-3 py-1.5 border border-neutral-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900"
+              >
+                <option value="">Epoche auswählen</option>
+                {epoches.filter(e => !filters.epoches.includes(e)).map(epoche => (
+                  <option key={epoche} value={epoche}>
+                    {epoche}
+                  </option>
+                ))}
+              </select>
               {filters.epoches.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 mt-1.5">
                   {filters.epoches.map(epoche => (
@@ -183,18 +176,18 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
             {/* Tags Filter */}
             <div>
               <label className="text-neutral-700 mb-1.5 block text-sm">Tags</label>
-              <Select onValueChange={addTag}>
-                <SelectTrigger className="w-full h-9">
-                  <SelectValue placeholder="Tag auswählen" />
-                </SelectTrigger>
-                <SelectContent>
-                  {allTags.filter(t => !filters.tags.includes(t)).map(tag => (
-                    <SelectItem key={tag} value={tag}>
-                      {tag}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <select
+                value=""
+                onChange={(e) => addTag(e.target.value)}
+                className="w-full h-9 px-3 py-1.5 border border-neutral-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900"
+              >
+                <option value="">Tag auswählen</option>
+                {allTags.filter(t => !filters.tags.includes(t)).map(tag => (
+                  <option key={tag} value={tag}>
+                    {tag}
+                  </option>
+                ))}
+              </select>
               {filters.tags.length > 0 && (
                 <div className="flex flex-wrap gap-1.5 mt-1.5">
                   {filters.tags.map(tag => (
@@ -212,16 +205,15 @@ export function FilterPanel({ filters, setFilters, artists, epoches, allTags }: 
             {/* Signature Filter */}
             <div>
               <label className="text-neutral-700 mb-1.5 block text-sm">Signatur</label>
-              <Select value={filters.signed} onValueChange={(value: 'all' | 'yes' | 'no') => setFilters({ ...filters, signed: value })}>
-                <SelectTrigger className="w-full h-9">
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">Alle</SelectItem>
-                  <SelectItem value="yes">Signiert</SelectItem>
-                  <SelectItem value="no">Unsigniert</SelectItem>
-                </SelectContent>
-              </Select>
+              <select
+                value={filters.signed}
+                onChange={(e) => setFilters({ ...filters, signed: e.target.value as 'all' | 'yes' | 'no' })}
+                className="w-full h-9 px-3 py-1.5 border border-neutral-300 rounded text-sm bg-white focus:outline-none focus:ring-2 focus:ring-neutral-900"
+              >
+                <option value="all">Alle</option>
+                <option value="yes">Signiert</option>
+                <option value="no">Unsigniert</option>
+              </select>
             </div>
 
             {/* Width Filter */}
