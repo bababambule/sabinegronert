@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-# sabinegronert
-Personal Website for Sabine Gronert
-=======
 # Sabine Gronert Art Collection
 
 A modern, minimalistic one-page website showcasing Sabine Gronert's art collection with a beautiful masonry layout and advanced filtering capabilities.
@@ -118,4 +114,3 @@ The app currently uses mock data for demonstration. To switch to real Airtable d
 ## License
 
 © 2025 Sabine Gronert. All rights reserved.
->>>>>>> Initial commit with GitHub Pages deployment configuration

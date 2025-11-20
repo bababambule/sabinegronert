@@ -50,8 +50,6 @@ export default function App() {
 
   const fetchArtworks = async () => {
     try {
-<<<<<<< HEAD
-=======
       /* 
       // Mock data for demonstration
       const mockArtworks: Artwork[] = [
@@ -177,7 +175,6 @@ export default function App() {
 
       */ 
       
->>>>>>> Initial commit with GitHub Pages deployment configuration
       // Actual Airtable API implementation:
       const AIRTABLE_API_KEY = 'pat7CiuH5fxxk87j1.dd2d39a56e7187e55f5bee5ae6c8ae457ec3be0d3542cd85c51b66272a0957fe';
       const BASE_ID = 'appO7VAnMnjEaVHhY';
