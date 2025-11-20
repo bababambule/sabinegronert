@@ -50,6 +50,134 @@ export default function App() {
 
   const fetchArtworks = async () => {
     try {
+<<<<<<< HEAD
+=======
+      /* 
+      // Mock data for demonstration
+      const mockArtworks: Artwork[] = [
+        {
+          id: '1',
+          name: 'Abstract Composition',
+          artist: 'Maria Gonzalez',
+          imageUrl: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80',
+          height: 120,
+          width: 90,
+          dated: '2021',
+          epoche: '21st Century',
+          signature: true,
+          medium: 'Canvas',
+          technique: 'Oil Paint',
+          tags: ['Abstract', 'Modern', 'Colorful']
+        },
+        {
+          id: '2',
+          name: 'Urban Landscape',
+          artist: 'James Chen',
+          imageUrl: 'https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=800&q=80',
+          height: 80,
+          width: 120,
+          dated: '2020',
+          epoche: '21st Century',
+          signature: true,
+          medium: 'Canvas',
+          technique: 'Acrylic',
+          tags: ['Landscape', 'Urban', 'Contemporary']
+        },
+        {
+          id: '3',
+          name: 'Botanical Study',
+          artist: 'Sarah Williams',
+          imageUrl: 'https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?w=800&q=80',
+          height: 100,
+          width: 70,
+          dated: '2022',
+          epoche: '21st Century',
+          signature: false,
+          medium: 'Paper',
+          technique: 'Watercolor',
+          tags: ['Botanical', 'Nature', 'Delicate']
+        },
+        {
+          id: '4',
+          name: 'Geometric Harmony',
+          artist: 'Klaus Mueller',
+          imageUrl: 'https://images.unsplash.com/photo-1549887534-1541e9326642?w=800&q=80',
+          height: 100,
+          width: 100,
+          dated: '2019',
+          epoche: '21st Century',
+          signature: true,
+          medium: 'Canvas',
+          technique: 'Mixed Media',
+          tags: ['Geometric', 'Abstract', 'Bold']
+        },
+        {
+          id: '5',
+          name: 'Serenity',
+          artist: 'Yuki Tanaka',
+          imageUrl: 'https://images.unsplash.com/photo-1577083552431-6e5fd01988ec?w=800&q=80',
+          height: 90,
+          width: 120,
+          dated: '2023',
+          epoche: '21st Century',
+          signature: true,
+          medium: 'Digital',
+          technique: 'Digital Art',
+          tags: ['Minimalist', 'Blue', 'Serene']
+        },
+        {
+          id: '6',
+          name: 'Portrait in Red',
+          artist: 'Elena Rossi',
+          imageUrl: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b6a5?w=800&q=80',
+          height: 130,
+          width: 90,
+          dated: '2021',
+          epoche: '21st Century',
+          signature: false,
+          medium: 'Canvas',
+          technique: 'Oil Paint',
+          tags: ['Portrait', 'Contemporary', 'Red']
+        },
+        {
+          id: '7',
+          name: 'Mountain Vista',
+          artist: 'Maria Gonzalez',
+          imageUrl: 'https://images.unsplash.com/photo-1549887534-1541e9326642?w=800&q=80',
+          height: 70,
+          width: 100,
+          dated: '2018',
+          epoche: '21st Century',
+          signature: true,
+          medium: 'Canvas',
+          technique: 'Oil Paint',
+          tags: ['Landscape', 'Nature', 'Mountains']
+        },
+        {
+          id: '8',
+          name: 'Still Life with Flowers',
+          artist: 'James Chen',
+          imageUrl: 'https://images.unsplash.com/photo-1541961017774-22349e4a1262?w=800&q=80',
+          height: 110,
+          width: 85,
+          dated: '2020',
+          epoche: '21st Century',
+          signature: true,
+          medium: 'Canvas',
+          technique: 'Acrylic',
+          tags: ['Still Life', 'Flowers', 'Classic']
+        }
+      ];
+
+      // Simulate API delay
+      setTimeout(() => {
+        setArtworks(mockArtworks);
+        setLoading(false);
+      }, 800);
+
+      */ 
+      
+>>>>>>> Initial commit with GitHub Pages deployment configuration
       // Actual Airtable API implementation:
       const AIRTABLE_API_KEY = 'pat7CiuH5fxxk87j1.dd2d39a56e7187e55f5bee5ae6c8ae457ec3be0d3542cd85c51b66272a0957fe';
       const BASE_ID = 'appO7VAnMnjEaVHhY';
